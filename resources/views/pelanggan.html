@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pelanggan - SiLaundry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans flex">
+
+    <div class="w-64 bg-[#1e3a8a] h-screen sticky top-0 text-white p-4 flex-shrink-0">
+        <div class="mb-8 px-2 flex items-center space-x-2">
+            <i class="fas fa-tshirt text-2xl text-blue-300"></i>
+            <h1 class="text-2xl font-bold italic">SiLaundry</h1>
+        </div>
+        <nav class="space-y-1">
+            <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition text-gray-300">
+                <i class="fas fa-home w-6"></i> <span>Dashboard</span>
+            </a>
+            <a href="transaksi.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition text-gray-300">
+                <i class="fas fa-shopping-cart w-6"></i> <span>Transaksi Pesanan</span>
+            </a>
+            <a href="pelanggan.html" class="flex items-center space-x-3 p-3 rounded-lg bg-blue-700 border-l-4 border-blue-400 text-white font-semibold">
+                <i class="fas fa-users w-6"></i> <span>Pelanggan</span>
+            </a>
+            <a href="kurir.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition text-gray-300">
+                <i class="fas fa-truck w-6"></i> <span>Kurir</span>
+            </a>
+            <a href="layanan.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition text-gray-300">
+                <i class="fas fa-tags w-6"></i> <span>Layanan & Satuan</span>
+            </a>
+        </nav>
+    </div>
+
+    <div class="flex-1 min-h-screen">
+        <div class="bg-white shadow-sm p-4 flex justify-between items-center mb-6">
+            <div class="flex items-center bg-gray-100 px-3 py-2 rounded-md w-96">
+                <i class="fas fa-search text-gray-400 mr-2"></i>
+                <input type="text" placeholder="Cari berdasarkan ID, Nama, atau No. Telp..." class="bg-transparent border-none focus:outline-none text-sm w-full">
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-right">
+                    <p class="text-sm font-bold text-gray-800">Admin Utama</p>
+                    <p class="text-xs text-gray-500">ID: AD001</p>
+                </div>
+                <div class="h-10 w-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">A</div>
+            </div>
+        </div>
+
+        <div class="px-8">
+            <div class="flex justify-between items-end mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 uppercase tracking-tight">Database Pelanggan</h2>
+                    <p class="text-gray-500 text-sm">Total Terdaftar: <span class="font-bold text-blue-600">1,402 Pelanggan</span></p>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 shadow-lg shadow-blue-200 transition">
+                    <i class="fas fa-user-plus text-sm"></i>
+                    <span class="font-semibold text-sm">Tambah Pelanggan Baru</span>
+                </button>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-gray-50 border-b border-gray-100">
+                            <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">ID Pelanggan</th>
+                            <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Informasi Pelanggan</th>
+                            <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">No. Telepon</th>
+                            <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Alamat Lengkap</th>
+                            <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-50">
+                        <tr class="hover:bg-blue-50/50 transition group">
+                            <td class="px-6 py-4">
+                                <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase">PL001</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="h-9 w-9 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold mr-3">BS</div>
+                                    <div>
+                                        <p class="text-sm font-bold text-gray-800">Budi Santoso</p>
+                                        <p class="text-xs text-gray-400 italic font-mono">budi.s@email.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-sm text-gray-600 font-medium">0812-3456-7890</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-sm text-gray-500 leading-tight w-64 truncate" title="Jl. Melati No. 123, RT 01/RW 02, Jakarta Barat">
+                                    Jl. Melati No. 123, RT 01/RW 02, Jakarta Barat
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex justify-center space-x-2">
+                                    <button title="Edit Data" class="p-2 text-blue-500 hover:bg-blue-100 rounded-lg transition">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button title="Riwayat Pesanan" class="p-2 text-green-500 hover:bg-green-100 rounded-lg transition">
+                                        <i class="fas fa-history"></i>
+                                    </button>
+                                    <button title="Hapus" class="p-2 text-red-400 hover:bg-red-50 rounded-lg transition">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-blue-50/50 transition group">
+                            <td class="px-6 py-4 tracking-widest font-mono text-xs font-bold text-blue-600">PL002</td>
+                            <td class="px-6 py-4 flex items-center">
+                                <div class="h-9 w-9 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold mr-3">SA</div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800">Siti Aminah</p>
+                                    <p class="text-xs text-gray-400 italic font-mono">siti.aminah@gmail.com</p>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-sm text-gray-600 font-medium">0857-1122-3344</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-sm text-gray-500 truncate w-64">Apartemen Kalibata City Tower Jasmine No. 10B</p>
+                            </td>
+                            <td class="px-6 py-4 flex justify-center space-x-2">
+                                <button class="p-2 text-blue-500 hover:bg-blue-100 rounded-lg"><i class="fas fa-edit"></i></button>
+                                <button class="p-2 text-green-500 hover:bg-green-100 rounded-lg"><i class="fas fa-history"></i></button>
+                                <button class="p-2 text-red-400 hover:bg-red-50 rounded-lg"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="bg-gray-50 px-6 py-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
+                    <p>Menampilkan 1 - 10 dari 1,402 pelanggan</p>
+                    <div class="flex space-x-1">
+                        <button class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100">Sebelumnya</button>
+                        <button class="px-3 py-1 bg-blue-600 text-white border border-blue-600 rounded">1</button>
+                        <button class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100">2</button>
+                        <button class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100">3</button>
+                        <button class="px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-100">Selanjutnya</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

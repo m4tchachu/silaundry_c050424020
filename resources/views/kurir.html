@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kurir - SiLaundry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans flex">
+
+    <div class="w-64 bg-[#1e3a8a] h-screen sticky top-0 text-white p-4 flex-shrink-0">
+        <div class="mb-8 px-2 flex items-center space-x-2">
+            <i class="fas fa-tshirt text-2xl text-blue-300"></i>
+            <h1 class="text-2xl font-bold italic">SiLaundry</h1>
+        </div>
+        <nav class="space-y-1">
+            <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition text-gray-300">
+                <i class="fas fa-home w-6"></i> <span>Dashboard</span>
+            </a>
+            <a href="transaksi.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition text-gray-300">
+                <i class="fas fa-shopping-cart w-6"></i> <span>Transaksi Pesanan</span>
+            </a>
+            <a href="pelanggan.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition text-gray-300">
+                <i class="fas fa-users w-6"></i> <span>Pelanggan</span>
+            </a>
+            <a href="kurir.html" class="flex items-center space-x-3 p-3 rounded-lg bg-blue-700 border-l-4 border-blue-400 text-white font-semibold">
+                <i class="fas fa-truck w-6"></i> <span>Kurir</span>
+            </a>
+            <a href="layanan.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition text-gray-300">
+                <i class="fas fa-tags w-6"></i> <span>Layanan & Satuan</span>
+            </a>
+        </nav>
+    </div>
+
+    <div class="flex-1 min-h-screen">
+        <div class="bg-white shadow-sm p-4 flex justify-between items-center mb-6 px-8">
+            <h2 class="text-xl font-bold text-gray-700">Manajemen Armada Kurir</h2>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-500">Status Server: <span class="text-green-500 font-bold">Online</span></span>
+                <div class="h-10 w-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">A</div>
+            </div>
+        </div>
+
+        <div class="px-8">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="text-xl font-black text-gray-800 uppercase tracking-tighter">Daftar Kurir Aktif</h3>
+                    <p class="text-gray-400 text-xs mt-1">Mengelola petugas jemput-antar laundry</p>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full flex items-center space-x-2 transition-all hover:shadow-lg">
+                    <i class="fas fa-plus-circle"></i>
+                    <span class="font-bold text-sm">Registrasi Kurir</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="h-14 w-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 text-xl font-bold">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <span class="bg-green-100 text-green-600 text-[10px] font-black px-2 py-1 rounded-full uppercase">Tersedia</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800">Ahmad Subarjo</h4>
+                        <p class="text-blue-600 text-xs font-mono mb-3 italic">ID_KURIR: KR01</p>
+                        
+                        <div class="space-y-2 border-t pt-3">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-phone w-6 text-gray-400"></i>
+                                <span>0812-9988-7766</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-motorcycle w-6 text-gray-400"></i>
+                                <span class="bg-gray-100 px-2 py-0.5 rounded text-xs font-semibold">Honda Vario (B 1234 ABC)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button class="flex-1 bg-gray-100 hover:bg-blue-100 text-blue-600 py-2 rounded-lg text-xs font-bold transition">EDIT</button>
+                        <button class="px-4 bg-red-50 text-red-500 hover:bg-red-500 hover:text-white py-2 rounded-lg transition"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="h-14 w-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 text-xl font-bold">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <span class="bg-yellow-100 text-yellow-600 text-[10px] font-black px-2 py-1 rounded-full uppercase">Dalam Tugas</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800">Rizky Ramadhan</h4>
+                        <p class="text-blue-600 text-xs font-mono mb-3 italic">ID_KURIR: KR02</p>
+                        
+                        <div class="space-y-2 border-t pt-3">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-phone w-6 text-gray-400"></i>
+                                <span>0856-4433-2211</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-truck-pickup w-6 text-gray-400"></i>
+                                <span class="bg-gray-100 px-2 py-0.5 rounded text-xs font-semibold">Gran Max Blindvan</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button class="flex-1 bg-gray-100 hover:bg-blue-100 text-blue-600 py-2 rounded-lg text-xs font-bold transition">EDIT</button>
+                        <button class="px-4 bg-red-50 text-red-500 hover:bg-red-500 hover:text-white py-2 rounded-lg transition"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
