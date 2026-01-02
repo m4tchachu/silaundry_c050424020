@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Pelanggans;
+namespace App\Filament\Resources\JenisSatuans;
 
-use App\Filament\Resources\Pelanggans\Pages\CreatePelanggan;
-use App\Filament\Resources\Pelanggans\Pages\EditPelanggan;
-use App\Filament\Resources\Pelanggans\Pages\ListPelanggans;
-use App\Filament\Resources\Pelanggans\Schemas\PelangganForm;
-use App\Filament\Resources\Pelanggans\Tables\PelanggansTable;
-use App\Models\Pelanggan;
+use App\Filament\Resources\JenisSatuans\Pages\CreateJenisSatuan;
+use App\Filament\Resources\JenisSatuans\Pages\EditJenisSatuan;
+use App\Filament\Resources\JenisSatuans\Pages\ListJenisSatuans;
+use App\Filament\Resources\JenisSatuans\Schemas\JenisSatuanForm;
+use App\Filament\Resources\JenisSatuans\Tables\JenisSatuansTable;
+use App\Models\JenisSatuan;
 use BackedEnum;
 use UnitEnum;
 use Filament\Resources\Resource;
@@ -15,38 +15,24 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class PelangganResource extends Resource
+class JenisSatuanResource extends Resource
 {
-    protected static ?string $model = Pelanggan::class;
+    protected static ?string $model = JenisSatuan::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::User;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ListBullet;
+
+    protected static ?string $recordTitleAttribute = 'JENIS_SATUAN';
 
     protected static string|UnitEnum|null $navigationGroup = 'Admin';
 
     public static function form(Schema $schema): Schema
     {
-        return PelangganForm::configure($schema);
+        return JenisSatuanForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return PelanggansTable::configure($table);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => ListPelanggans::route('/'),
-            'create' => CreatePelanggan::route('/create'),
-            'edit' => EditPelanggan::route('/{record}/edit'),
-        ];
+        return JenisSatuansTable::configure($table);
     }
 
     protected static function userIsAdmin(): bool
@@ -86,5 +72,20 @@ class PelangganResource extends Resource
     public static function canDelete($record): bool
     {
         return static::userIsAdmin();
+    }
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListJenisSatuans::route('/'),
+            'create' => CreateJenisSatuan::route('/create'),
+            'edit' => EditJenisSatuan::route('/{record}/edit'),
+        ];
     }
 }

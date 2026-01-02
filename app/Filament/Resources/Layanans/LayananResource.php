@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Pelanggans;
+namespace App\Filament\Resources\Layanans;
 
-use App\Filament\Resources\Pelanggans\Pages\CreatePelanggan;
-use App\Filament\Resources\Pelanggans\Pages\EditPelanggan;
-use App\Filament\Resources\Pelanggans\Pages\ListPelanggans;
-use App\Filament\Resources\Pelanggans\Schemas\PelangganForm;
-use App\Filament\Resources\Pelanggans\Tables\PelanggansTable;
-use App\Models\Pelanggan;
+use App\Filament\Resources\Layanans\Pages\CreateLayanan;
+use App\Filament\Resources\Layanans\Pages\EditLayanan;
+use App\Filament\Resources\Layanans\Pages\ListLayanans;
+use App\Filament\Resources\Layanans\Schemas\LayananForm;
+use App\Filament\Resources\Layanans\Tables\LayanansTable;
+use App\Models\Layanan;
 use BackedEnum;
 use UnitEnum;
 use Filament\Resources\Resource;
@@ -15,38 +15,24 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class PelangganResource extends Resource
+class LayananResource extends Resource
 {
-    protected static ?string $model = Pelanggan::class;
+    protected static ?string $model = Layanan::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::User;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Inbox;
+
+    protected static ?string $recordTitleAttribute = 'NAMA_LAYANAN';
 
     protected static string|UnitEnum|null $navigationGroup = 'Admin';
 
     public static function form(Schema $schema): Schema
     {
-        return PelangganForm::configure($schema);
+        return LayananForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return PelanggansTable::configure($table);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => ListPelanggans::route('/'),
-            'create' => CreatePelanggan::route('/create'),
-            'edit' => EditPelanggan::route('/{record}/edit'),
-        ];
+        return LayanansTable::configure($table);
     }
 
     protected static function userIsAdmin(): bool
@@ -86,5 +72,21 @@ class PelangganResource extends Resource
     public static function canDelete($record): bool
     {
         return static::userIsAdmin();
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListLayanans::route('/'),
+            'create' => CreateLayanan::route('/create'),
+            'edit' => EditLayanan::route('/{record}/edit'),
+        ];
     }
 }
