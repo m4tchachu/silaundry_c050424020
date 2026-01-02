@@ -20,6 +20,7 @@ class LayananResource extends Resource
     protected static ?string $model = Layanan::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Inbox;
+    protected static ?string $navigationLabel = 'Layanan';
 
     protected static ?string $recordTitleAttribute = 'NAMA_LAYANAN';
 

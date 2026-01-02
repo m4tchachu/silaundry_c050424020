@@ -58,21 +58,4 @@ class Pesanan extends Model
     {
         return $this->hasMany(PesananSatuan::class, 'ID_PESANAN', 'ID_PESANAN');
     }
-
-    public static function computeTotalsFromData(array $data): array
-    {
-        $totalLayanan = collect($data['layanan'] ?? [])->sum(fn($i) => $i['SUB_TOTAL'] ?? 0);
-        $totalSatuan = collect($data['satuan'] ?? [])->sum(fn($i) => $i['SUB_TOTAL'] ?? 0);
-
-        $totalBiaya = $totalLayanan + $totalSatuan;
-
-        $jumlahItem = collect($data['layanan'] ?? [])->sum(fn($i) => $i['JUMLAH_ITEM'] ?? 0)
-            + collect($data['satuan'] ?? [])->sum(fn($i) => $i['JUMLAH_ITEM'] ?? 0);
-
-        return [
-            'TOTAL_BIAYA' => $totalBiaya,
-            'JUMLAH_ITEM' => $jumlahItem,
-        ];
-    }
 }
-

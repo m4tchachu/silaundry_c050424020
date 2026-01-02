@@ -20,6 +20,7 @@ class KurirResource extends Resource
     protected static ?string $model = Kurir::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Truck;
+    protected static ?string $navigationLabel = 'Kurir';
 
     protected static ?string $recordTitleAttribute = 'NAMA_KURIR';
 

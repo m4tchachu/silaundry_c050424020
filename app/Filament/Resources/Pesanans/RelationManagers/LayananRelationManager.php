@@ -30,23 +30,9 @@ class LayananRelationManager extends RelationManager
                     ->relationship('layanan', 'NAMA_LAYANAN')
                     ->required()
                     ->searchable()
-                    ->preload()
-                    ->reactive()
-                    ->afterStateUpdated(function ($state, $set, $get) {
-                        $harga = \App\Models\Layanan::find($state)?->HARGA ?? 0;
-                        $jumlah = $get('JUMLAH_ITEM') ?? 0;
-                        $set('SUB_TOTAL', $jumlah * $harga);
-                    }),
+                    ->preload(),
 
-                TextInput::make('JUMLAH_ITEM')
-                    ->numeric()
-                    ->label('Jumlah Item')
-                    ->reactive()
-                    ->afterStateUpdated(function ($state, $set, $get) {
-                        $harga = \App\Models\Layanan::find($get('ID_LAYANAN'))?->HARGA ?? 0;
-                        $set('SUB_TOTAL', ($state ?? 0) * $harga);
-                    }),
-
+                TextInput::make('JUMLAH_ITEM')->numeric()->label('Jumlah Item'),
                 TextInput::make('BERAT')->numeric()->label('Berat'),
                 TextInput::make('SUB_TOTAL')->numeric()->label('Sub Total'),
             ]);

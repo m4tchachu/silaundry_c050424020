@@ -30,23 +30,9 @@ class SatuanRelationManager extends RelationManager
                     ->relationship('satuan', 'JENIS_SATUAN')
                     ->required()
                     ->searchable()
-                    ->preload()
-                    ->reactive()
-                    ->afterStateUpdated(function ($state, $set, $get) {
-                        $harga = \App\Models\JenisSatuan::find($state)?->HARGA ?? 0;
-                        $jumlah = $get('JUMLAH_ITEM') ?? 0;
-                        $set('SUB_TOTAL', $jumlah * $harga);
-                    }),
+                    ->preload(),
 
-                TextInput::make('JUMLAH_ITEM')
-                    ->numeric()
-                    ->label('Jumlah Item')
-                    ->reactive()
-                    ->afterStateUpdated(function ($state, $set, $get) {
-                        $harga = \App\Models\JenisSatuan::find($get('ID_SATUAN'))?->HARGA ?? 0;
-                        $set('SUB_TOTAL', ($state ?? 0) * $harga);
-                    }),
-
+                TextInput::make('JUMLAH_ITEM')->numeric()->label('Jumlah Item'),
                 TextInput::make('SUB_TOTAL')->numeric()->label('Sub Total'),
             ]);
     }

@@ -20,6 +20,7 @@ class JenisKiloanResource extends Resource
     protected static ?string $model = JenisKiloan::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::NumberedList;
+    protected static ?string $navigationLabel = 'Jenis Kiloan';
 
     protected static ?string $recordTitleAttribute = 'PAKET_KILOAN';
 

@@ -20,6 +20,7 @@ class JenisSatuanResource extends Resource
     protected static ?string $model = JenisSatuan::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ListBullet;
+    protected static ?string $navigationLabel = 'Jenis Satuan';
 
     protected static ?string $recordTitleAttribute = 'JENIS_SATUAN';
 
