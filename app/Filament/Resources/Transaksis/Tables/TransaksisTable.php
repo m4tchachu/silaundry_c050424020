@@ -1,31 +1,32 @@
 <?php
+namespace App\Filament\Resources\Transaksis\Tables;
 
-namespace App\Filament\Resources\JenisKiloans\Tables;
-
+use Filament\Tables\Columns\TextColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class JenisKiloansTable
+class TransaksisTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('ID_KILOAN')
-                    ->label('ID')
+                TextColumn::make('ID_PESANAN')
+                    ->label('ID Pesanan')
                     ->searchable(),
-                TextColumn::make('PAKET_KILOAN')
-                    ->label('Paket')
+                TextColumn::make('TOTAL_BIAYA')
+                    ->label('Total Biaya')
                     ->searchable(),
-                TextColumn::make('HARGA')
-                    ->label('Harga')
+                TextColumn::make('STATUS')
+                    ->label('Status')
                     ->searchable(),
+                TextColumn::make('created_at')
+                    ->label('Dibuat'),
             ])
             ->filters([
-                //
+                // Tambahkan filter jika perlu
             ])
             ->recordActions([
                 EditAction::make(),

@@ -16,6 +16,7 @@ class PesanansTable
         return $table
             ->columns([
                 TextColumn::make('ID_PESANAN')
+                    ->label('ID Pesanan')
                     ->searchable(),
                 TextColumn::make('pelanggan.NAMA_PELANGGAN')
                     ->label('Pelanggan')
@@ -30,21 +31,27 @@ class PesanansTable
                     ->label('Kiloan')
                     ->searchable(),
                 TextColumn::make('TANGGAL_MASUK')
+                    ->label('Tanggal Masuk')
                     ->date()
                     ->sortable(),
                 TextColumn::make('ESTIMASI_SELESAI')
+                    ->label('Estimasi Selesai')
                     ->date()
                     ->sortable(),
                 TextColumn::make('JUMLAH_ITEM')
+                    ->label('Jumlah Item')
                     ->searchable(),
                 TextColumn::make('BERAT')
+                    ->label('Berat (kg)')
                     ->searchable(),
                 TextColumn::make('STATUS')
+                    ->label('Status')
                     ->searchable(),
                 TextColumn::make('TOTAL_BIAYA')
                     ->label('Total')
                     ->searchable(),
                 TextColumn::make('CATATAN')
+                    ->label('Catatan')
                     ->searchable(),
             ])
             ->filters([

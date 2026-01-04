@@ -27,6 +27,7 @@ class KasirPanelProvider extends PanelProvider
             ->id('kasir')
             ->path('kasir')
             ->profile()
+            ->brandName('SILaundry')
             ->login()
             ->colors([
                 'primary' => Color::Amber,

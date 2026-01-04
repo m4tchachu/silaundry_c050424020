@@ -102,31 +102,6 @@ class Pesanan extends Model
             ]
         );
 
-        // sync rincian: clear and repopulate from child tables
-        \App\Models\TransaksiRincian::where('ID_TRANSAKSI', $transaksi->ID_TRANSAKSI)->delete();
-
-        foreach ($this->satuan()->get() as $row) {
-            \App\Models\TransaksiRincian::create([
-                'ID_TRANSAKSI' => $transaksi->ID_TRANSAKSI,
-                'ID_PESANAN' => $this->ID_PESANAN,
-                'ITEM_TYPE' => 'satuan',
-                'ITEM_ID' => $row->ID_SATUAN,
-                'JUMLAH_ITEM' => $row->JUMLAH_ITEM,
-                'SUB_TOTAL' => $row->SUB_TOTAL,
-            ]);
-        }
-
-        foreach ($this->layanan()->get() as $row) {
-            \App\Models\TransaksiRincian::create([
-                'ID_TRANSAKSI' => $transaksi->ID_TRANSAKSI,
-                'ID_PESANAN' => $this->ID_PESANAN,
-                'ITEM_TYPE' => 'layanan',
-                'ITEM_ID' => $row->ID_LAYANAN,
-                'JUMLAH_ITEM' => $row->JUMLAH_ITEM,
-                'BERAT' => $row->BERAT,
-                'SUB_TOTAL' => $row->SUB_TOTAL,
-            ]);
-        }
         // persist TOTAL_BIAYA on pesanan without firing model events
         $this->TOTAL_BIAYA = (string) $total;
         if (method_exists($this, 'saveQuietly')) {

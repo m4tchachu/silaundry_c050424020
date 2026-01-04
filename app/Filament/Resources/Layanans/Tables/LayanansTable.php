@@ -14,9 +14,14 @@ class LayanansTable
     {
         return $table
             ->columns([
-                TextColumn::make('ID_LAYANAN')->label('ID'),
-                TextColumn::make('NAMA_LAYANAN')->label('Nama'),
-                TextColumn::make('HARGA')->label('Harga'),
+                TextColumn::make('ID_LAYANAN')
+                    ->label('ID')
+                    ->searchable(),
+                TextColumn::make('NAMA_LAYANAN')
+                    ->label('Nama')
+                    ->searchable(),
+                TextColumn::make('HARGA')
+                    ->label('Harga'),
             ])
             ->filters([
                 //

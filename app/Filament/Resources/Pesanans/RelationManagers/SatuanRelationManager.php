@@ -118,14 +118,12 @@ class SatuanRelationManager extends RelationManager
             ->recordTitleAttribute('ID_SATUAN')
             ->columns([
                 TextColumn::make('satuan.JENIS_SATUAN')
-                    ->label('Jenis Satuan')
-                    ->searchable(),
+                    ->label('Jenis Satuan'),
                 TextColumn::make('JUMLAH_ITEM')
-                    ->searchable(),
+                    ->label('Jumlah Item'),
                 TextColumn::make('SUB_TOTAL')
                     ->label('Sub Total')
-                    ->formatStateUsing(fn($state) => $state ? 'Rp ' . number_format((int)$state, 0, ',', '.') : 'Rp 0')
-                    ->searchable(),
+                    ->formatStateUsing(fn($state) => $state ? 'Rp ' . number_format((int)$state, 0, ',', '.') : 'Rp 0'),
             ])
             ->filters([
                 //

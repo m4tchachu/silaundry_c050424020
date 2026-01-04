@@ -292,29 +292,68 @@ class PesananForm
         //             ]),
         //     ]);
             return $schema->components([
-            Section::make('Informasi Dasar')
+                Grid::make()
                 ->schema([
-                    TextInput::make('ID_PESANAN')->label('ID Pesanan')->required()->maxLength(6),
-                    Select::make('ID_PELANGGAN')->label('Pelanggan')->relationship('pelanggan', 'NAMA_PELANGGAN')->searchable()->preload()->required(),
-                    Select::make('ID_ADMIN')->label('Admin')->relationship('admin', 'NAMA_ADMIN')->searchable()->preload()->required(),
-                    Select::make('ID_KURIR')->label('Kurir')->relationship('kurir', 'NAMA_KURIR')->searchable()->preload()->nullable(),
-                    DatePicker::make('TANGGAL_MASUK')->label('Tanggal Masuk'),
-                    DatePicker::make('ESTIMASI_SELESAI')->label('Estimasi Selesai'),
-                    TextInput::make('JUMLAH_ITEM')->label('Jumlah Item')->numeric()->nullable(),
-                    TextInput::make('BERAT')->label('Berat (kg)')->numeric()->nullable(),
-                    Select::make('STATUS')
-                            ->label('Status')
-                            ->options([
-                                'Pending' => 'Pending',
-                                'Proses' => 'Proses',
-                                'Selesai' => 'Selesai',
-                                'Diambil' => 'Diambil',
-                            ])
+                    Section::make('Informasi Dasar')
+                    ->schema([
+                        TextInput::make('ID_PESANAN')
+                            ->label('ID Pesanan')
                             ->required()
+                            ->maxLength(6),
+                        Select::make('ID_PELANGGAN')
+                            ->label('Pelanggan')
+                            ->relationship('pelanggan', 'NAMA_PELANGGAN')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Select::make('ID_ADMIN')
+                            ->label('Admin')
+                            ->relationship('admin', 'USERNAME') 
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Select::make('ID_KURIR')
+                            ->label('Kurir')
+                            ->relationship('kurir', 'NAMA_KURIR')
+                            ->searchable()
+                            ->preload()
                             ->nullable(),
-                    TextInput::make('TOTAL_BIAYA')->label('Total Biaya')->numeric()->nullable(),
-                    Textarea::make('CATATAN')->label('Catatan')->nullable(),
-                ]),
-        ]);
+                        Grid::make()->schema([
+                        DatePicker::make('TANGGAL_MASUK')
+                            ->label('Tanggal Masuk'),
+                        DatePicker::make('ESTIMASI_SELESAI')
+                            ->label('Estimasi Selesai'),
+                        ])->columns(2),
+                    ]),
+                    Section::make('Rincian Pesanan')
+                    ->schema([
+                        TextInput::make('JUMLAH_ITEM')
+                            ->label('Jumlah Item')
+                            ->numeric()
+                            ->nullable(),
+                        TextInput::make('BERAT')
+                            ->label('Berat (kg)')
+                            ->numeric()
+                            ->nullable(),
+                        Select::make('STATUS')
+                            ->label('Status')
+                                ->options([
+                                    'Pending' => 'Pending',
+                                    'Proses' => 'Proses',
+                                    'Selesai' => 'Selesai',
+                                    'Diambil' => 'Diambil',
+                                ])
+                                ->required()
+                                ->nullable(),
+                        TextInput::make('TOTAL_BIAYA')
+                            ->label('Total Biaya')
+                            ->numeric()
+                            ->nullable(),
+                        Textarea::make('CATATAN')
+                            ->label('Catatan')
+                            ->nullable(),
+                    ]),
+                ])->columns(2),
+            ])->columns(1);
     }
 }

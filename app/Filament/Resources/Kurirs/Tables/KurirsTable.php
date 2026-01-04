@@ -15,12 +15,16 @@ class KurirsTable
         return $table
             ->columns([
                 TextColumn::make('ID_KURIR')
+                    ->label('ID Kurir')
                     ->searchable(),
                 TextColumn::make('NAMA_KURIR')
+                    ->label('Nama')
                     ->searchable(),
                 TextColumn::make('NO_TELP')
+                    ->label('No. Telp')
                     ->searchable(),
                 TextColumn::make('KENDARAAN')
+                    ->label('Kendaraan')
                     ->searchable(),
             ])
             ->filters([

@@ -14,10 +14,10 @@ class PelanggansTable
     {
         return $table
             ->columns([
-                TextColumn::make('ID_PELANGGAN')->label('ID'),
-                TextColumn::make('NAMA_PELANGGAN')->label('Nama'),
-                TextColumn::make('ALAMAT')->label('Alamat')->limit(50),
-                TextColumn::make('NO_TELP')->label('No. Telp'),
+                TextColumn::make('ID_PELANGGAN')->label('ID')->searchable(),
+                TextColumn::make('NAMA_PELANGGAN')->label('Nama')->searchable(),
+                TextColumn::make('ALAMAT')->label('Alamat')->limit(50)->searchable(),
+                TextColumn::make('NO_TELP')->label('No. Telp')->searchable(),
             ])
             ->filters([
                 //
