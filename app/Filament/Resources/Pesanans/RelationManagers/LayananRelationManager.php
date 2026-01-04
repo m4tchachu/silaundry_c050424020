@@ -12,6 +12,7 @@ use Filament\Actions\DissociateBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Placeholder;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
@@ -29,12 +30,62 @@ class LayananRelationManager extends RelationManager
                     ->label('Layanan')
                     ->relationship('layanan', 'NAMA_LAYANAN')
                     ->required()
-                    ->searchable()
-                    ->preload(),
+                    ->preload()
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, $set, $get) {
+                        $price = 0;
+                        if ($state) {
+                            $model = \App\Models\Layanan::find($state);
+                            $price = $model ? (int) $model->HARGA : 0;
+                        }
+                        $jumlah = (int) ($get('JUMLAH_ITEM') ?? 0);
+                        $berat = (float) ($get('BERAT') ?? 0);
+                        $sub = $jumlah > 0 ? $jumlah * $price : $berat * $price;
+                        $set('SUB_TOTAL', $sub);
+                    }),
 
-                TextInput::make('JUMLAH_ITEM')->numeric()->label('Jumlah Item'),
-                TextInput::make('BERAT')->numeric()->label('Berat'),
-                TextInput::make('SUB_TOTAL')->numeric()->label('Sub Total'),
+                TextInput::make('JUMLAH_ITEM')
+                    ->numeric()
+                    ->label('Jumlah Item')
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, $set, $get) {
+                        $price = 0;
+                        $id = $get('ID_LAYANAN');
+                        if ($id) {
+                            $model = \App\Models\Layanan::find($id);
+                            $price = $model ? (int) $model->HARGA : 0;
+                        }
+                        $berat = (float) ($get('BERAT') ?? 0);
+                        $sub = ((int) ($state ?? 0)) * $price;
+                        if ($sub <= 0 && $berat > 0) {
+                            $sub = $berat * $price;
+                        }
+                        $set('SUB_TOTAL', $sub);
+                    }),
+
+                TextInput::make('BERAT')
+                    ->numeric()
+                    ->label('Berat')
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, $set, $get) {
+                        $price = 0;
+                        $id = $get('ID_LAYANAN');
+                        if ($id) {
+                            $model = \App\Models\Layanan::find($id);
+                            $price = $model ? (int) $model->HARGA : 0;
+                        }
+                        $jumlah = (int) ($get('JUMLAH_ITEM') ?? 0);
+                        $sub = ((float) ($state ?? 0)) * $price;
+                        if ($jumlah > 0) {
+                            $sub = $jumlah * $price;
+                        }
+                        $set('SUB_TOTAL', $sub);
+                    }),
+
+                TextInput::make('SUB_TOTAL')->numeric()->label('Sub Total')->disabled(),
+                Placeholder::make('SUB_TOTAL_FORMAT')
+                    ->label('Sub Total (Rp)')
+                    ->content(fn($get) => $get('SUB_TOTAL') ? ('Rp ' . number_format((int) $get('SUB_TOTAL'), 0, ',', '.')) : 'Rp 0'),
             ]);
     }
 
@@ -44,14 +95,14 @@ class LayananRelationManager extends RelationManager
             ->recordTitleAttribute('ID_LAYANAN')
             ->columns([
                 TextColumn::make('layanan.NAMA_LAYANAN')
-                    ->label('Layanan')
-                    ->searchable(),
+                    ->label('Layanan'),
                 TextColumn::make('JUMLAH_ITEM')
-                    ->searchable(),
+                    ->label('Jumlah Item'),
                 TextColumn::make('BERAT')
-                    ->searchable(),
+                    ->label('Berat'),
                 TextColumn::make('SUB_TOTAL')
-                    ->searchable(),
+                    ->label('Sub Total')
+                    ->formatStateUsing(fn($state) => $state ? 'Rp ' . number_format((int)$state, 0, ',', '.') : 'Rp 0'),
             ])
             ->filters([
                 //

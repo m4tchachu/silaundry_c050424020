@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Transaksi;
 
 class Pesanan extends Model
 {
@@ -25,6 +26,9 @@ class Pesanan extends Model
         'JUMLAH_ITEM',
         'BERAT',
         'STATUS',
+        'SUBTOTAL_KILOAN',
+        'SUBTOTAL_SATUAN',
+        'SUBTOTAL_LAYANAN',
         'TOTAL_BIAYA',
         'CATATAN',
     ];
@@ -57,5 +61,80 @@ class Pesanan extends Model
     public function satuan(): HasMany
     {
         return $this->hasMany(PesananSatuan::class, 'ID_PESANAN', 'ID_PESANAN');
+    }
+
+    /**
+     * Compute total by summing child subtotals and optional kiloan subtotal.
+     */
+    public function computeTotal(): int
+    {
+        $satuan = (int) $this->satuan()->sum('SUB_TOTAL');
+        $layanan = (int) $this->layanan()->sum('SUB_TOTAL');
+        $kiloan = (int) ($this->SUBTOTAL_KILOAN ?? 0);
+
+        return $satuan + $layanan + $kiloan;
+    }
+
+    public function getComputedTotalAttribute(): int
+    {
+        return $this->computeTotal();
+    }
+
+    public function transaksi()
+    {
+        return $this->hasOne(Transaksi::class, 'ID_PESANAN', 'ID_PESANAN');
+    }
+
+    /**
+     * Sync or create transaksi record for this pesanan using computed total.
+     */
+    public function syncTransaksi(): void
+    {
+        $total = $this->computeTotal();
+        $transaksiId = 'TR' . strtoupper(substr(uniqid(), -6));
+
+        $transaksi = Transaksi::updateOrCreate(
+            ['ID_PESANAN' => $this->ID_PESANAN],
+            [
+                'ID_TRANSAKSI' => $transaksiId,
+                'TOTAL_BIAYA' => $total,
+                'STATUS' => 'Pending',
+            ]
+        );
+
+        // sync rincian: clear and repopulate from child tables
+        \App\Models\TransaksiRincian::where('ID_TRANSAKSI', $transaksi->ID_TRANSAKSI)->delete();
+
+        foreach ($this->satuan()->get() as $row) {
+            \App\Models\TransaksiRincian::create([
+                'ID_TRANSAKSI' => $transaksi->ID_TRANSAKSI,
+                'ID_PESANAN' => $this->ID_PESANAN,
+                'ITEM_TYPE' => 'satuan',
+                'ITEM_ID' => $row->ID_SATUAN,
+                'JUMLAH_ITEM' => $row->JUMLAH_ITEM,
+                'SUB_TOTAL' => $row->SUB_TOTAL,
+            ]);
+        }
+
+        foreach ($this->layanan()->get() as $row) {
+            \App\Models\TransaksiRincian::create([
+                'ID_TRANSAKSI' => $transaksi->ID_TRANSAKSI,
+                'ID_PESANAN' => $this->ID_PESANAN,
+                'ITEM_TYPE' => 'layanan',
+                'ITEM_ID' => $row->ID_LAYANAN,
+                'JUMLAH_ITEM' => $row->JUMLAH_ITEM,
+                'BERAT' => $row->BERAT,
+                'SUB_TOTAL' => $row->SUB_TOTAL,
+            ]);
+        }
+        // persist TOTAL_BIAYA on pesanan without firing model events
+        $this->TOTAL_BIAYA = (string) $total;
+        if (method_exists($this, 'saveQuietly')) {
+            $this->saveQuietly();
+        } else {
+            static::withoutEvents(function () {
+                $this->save();
+            });
+        }
     }
 }

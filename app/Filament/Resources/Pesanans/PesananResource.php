@@ -12,6 +12,7 @@ use BackedEnum;
 use UnitEnum;
 use App\Filament\Resources\Pesanans\RelationManagers\LayananRelationManager;
 use App\Filament\Resources\Pesanans\RelationManagers\SatuanRelationManager;
+use Illuminate\Support\Facades\Auth;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -48,7 +49,7 @@ class PesananResource extends Resource
 
     protected static function userIsStaff(): bool
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         if (! $user) {
             return false;

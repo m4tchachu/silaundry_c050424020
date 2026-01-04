@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Pesanans\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -41,6 +42,7 @@ class PesanansTable
                 TextColumn::make('STATUS')
                     ->searchable(),
                 TextColumn::make('TOTAL_BIAYA')
+                    ->label('Total')
                     ->searchable(),
                 TextColumn::make('CATATAN')
                     ->searchable(),
@@ -50,6 +52,7 @@ class PesanansTable
             ])
             ->recordActions([
                 EditAction::make(),
+                
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

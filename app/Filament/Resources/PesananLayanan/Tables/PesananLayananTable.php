@@ -1,0 +1,39 @@
+<?php
+namespace App\Filament\Resources\PesananLayanan\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+
+class PesananLayananTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('ID_PESANAN')
+                    ->label('ID Pesanan')
+                    ->searchable(),
+                TextColumn::make('layanan.NAMA_LAYANAN')
+                    ->label('Layanan')
+                    ->searchable(),
+                TextColumn::make('JUMLAH_ITEM')
+                    ->label('Jumlah Item'),
+                TextColumn::make('BERAT')
+                    ->label('Berat'),
+                TextColumn::make('SUB_TOTAL')
+                    ->label('Sub Total')
+                    ->formatStateUsing(fn($state) => $state ? 'Rp ' . number_format((int)$state, 0, ',', '.') : 'Rp 0'),
+            ])
+            ->recordActions([
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}

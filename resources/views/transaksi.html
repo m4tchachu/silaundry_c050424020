@@ -8,156 +8,230 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .hidden-summary { display: none; }
+        /* Transisi halus saat ringkasan muncul */
+        #summary-section { animation: slideIn 0.4s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body class="bg-gray-100 font-sans flex">
+<body class="bg-gray-50 font-sans flex min-h-screen">
 
-    <div class="w-64 bg-[#1e3a8a] h-screen sticky top-0 text-white p-4">
-            <div class="mb-8 px-2 flex items-center space-x-2">
-                <i class="fas fa-tshirt text-2xl text-blue-300"></i>
-                <h1 class="text-2xl font-bold italic">SiLaundry</h1>
+    <div class="w-64 bg-[#1e3a8a] shadow-xl sticky top-0 h-screen text-white p-6 flex-shrink-0">
+        <div class="mb-10 flex items-center space-x-3">
+            <div class="bg-blue-400 p-2 rounded-lg">
+                <i class="fas fa-tshirt text-xl"></i>
             </div>
-        <nav class="space-y-1">
-            <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition">
-                <i class="fas fa-home w-6"></i> <span>Dashboard</span>
+            <h1 class="text-2xl font-bold tracking-tight italic">SiLaundry</h1>
+        </div>
+        <nav class="space-y-2">
+            <a href="index.html" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-blue-800 transition-all text-blue-100">
+                <i class="fas fa-home w-5"></i> <span>Dashboard</span>
             </a>
-            <a href="transaksi.html" class="flex items-center space-x-3 p-3 rounded-lg bg-blue-700 border-l-4 border-blue-400">
-                <i class="fas fa-shopping-cart w-6"></i> <span>Transaksi Pesanan</span>
+            <a href="transaksi.html" class="flex items-center space-x-3 p-3 rounded-xl bg-blue-700 border-l-4 border-blue-300 shadow-inner text-white font-semibold">
+                <i class="fas fa-shopping-cart w-5"></i> <span>Transaksi Pesanan</span>
             </a>
-            <a href="pelanggan.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition">
-                <i class="fas fa-users w-6"></i> <span>Pelanggan</span>
+            <a href="pelanggan.html" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-blue-800 transition-all text-blue-100">
+                <i class="fas fa-users w-5"></i> <span>Pelanggan</span>
             </a>
-            <a href="kurir.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition">
-                <i class="fas fa-truck w-6"></i> <span>Kurir</span>
+            <a href="kurir.html" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-blue-800 transition-all text-blue-100">
+                <i class="fas fa-truck w-5"></i> <span>Kurir</span>
             </a>
-            <a href="layanan.html" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-800 transition">
-                <i class="fas fa-tags w-6"></i> <span>Layanan & Satuan</span>
+            <a href="layanan.html" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-blue-800 transition-all text-blue-100">
+                <i class="fas fa-tags w-5"></i> <span>Layanan & Satuan</span>
             </a>
         </nav>
     </div>
 
-    <div class="flex-1 p-8">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-800">Tambah Pesanan Baru</h2>
-            <button class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Kembali</button>
+    <div class="flex-1 p-10">
+        <div class="flex justify-between items-center mb-10">
+            <div>
+                <h2 class="text-3xl font-extrabold text-gray-800">Tambah Pesanan Baru</h2>
+                <p class="text-gray-500 mt-1">Input rincian transaksi laundry pelanggan</p>
+            </div>
+            <button class="bg-white border border-gray-300 text-gray-700 px-5 py-2 rounded-xl hover:bg-gray-50 shadow-sm transition-all font-medium">
+                <i class="fas fa-arrow-left mr-2"></i> Kembali
+            </button>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="lg:col-span-2 space-y-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <h3 class="text-lg font-semibold mb-4 border-b pb-2">Informasi Dasar</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Pilih Pelanggan</label>
-                            <select id="pelanggan" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            
+            <div class="lg:col-span-2 space-y-8">
+                
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <span class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+                        <h3 class="text-lg font-bold text-gray-800">Informasi Dasar</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-600">Pilih Pelanggan</label>
+                            <select id="pelanggan" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                                 <option value="">-- Pilih Pelanggan --</option>
                                 <option value="PL001">PL001 - Budi Santoso</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Kurir Penjemput (Opsional)</label>
-                            <select id="kurir" class="w-full p-2 border border-gray-300 rounded-md">
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-600">Kurir Penjemput <span class="text-xs font-normal text-gray-400">(Opsional)</span></label>
+                            <select id="kurir" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                                 <option value="">-- Tanpa Kurir --</option>
                                 <option value="KR01">KR01 - Ahmad (Motor)</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Masuk</label>
-                            <input type="date" class="w-full p-2 border border-gray-300 rounded-md">
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-600">Tanggal Masuk</label>
+                            <input type="date" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Estimasi Selesai</label>
-                            <input type="date" class="w-full p-2 border border-gray-300 rounded-md">
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-600">Estimasi Selesai</label>
+                            <input type="date" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <h3 class="text-lg font-semibold mb-4 border-b pb-2">Rincian Item</h3>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <span class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+                        <h3 class="text-lg font-bold text-gray-800">Rincian Item</h3>
+                    </div>
                     
-                    <div class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                        <h4 class="font-bold text-blue-800 mb-2">Layanan Kiloan (Kosongkan jika tidak ada)</h4>
-                        <div class="grid grid-cols-3 gap-4">
-                            <select id="paket_kiloan" class="p-2 border border-gray-300 rounded-md">
-                                <option value="0">Pilih Paket...</option>
+                    <div class="mb-8 p-6 bg-blue-50/50 rounded-2xl border border-blue-100">
+                        <h4 class="font-bold text-blue-900 mb-4 flex items-center">
+                            <i class="fas fa-balance-scale mr-2 text-blue-500"></i> Layanan Kiloan
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <select id="paket_kiloan" class="p-3 border border-blue-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="0">-- Pilih Paket Kiloan --</option>
                                 <option value="5000">Cuci Kering (Rp 5.000)</option>
                                 <option value="8000">Cuci Setrika (Rp 8.000)</option>
                             </select>
-                            <input type="number" id="berat" placeholder="Berat (Kg)" class="p-2 border border-gray-300 rounded-md">
+                            <div class="relative">
+                                <input type="number" id="berat" placeholder="0" class="w-full p-3 pr-10 border border-blue-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
+                                <span class="absolute right-4 top-3.5 text-gray-400 text-sm font-bold">Kg</span>
+                            </div>
                         </div>
                     </div>
 
-                    <h4 class="font-bold text-gray-700 mb-2">Layanan Satuan</h4>
-                    <table class="w-full mb-4">
-                        <thead>
-                            <tr class="text-left text-xs uppercase text-gray-500 border-b">
-                                <th class="pb-2">Jenis Barang</th>
-                                <th class="pb-2">Jumlah</th>
-                                <th class="pb-2">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="satuan-body">
-                            <tr>
-                                <td class="py-2">
-                                    <select class="w-full p-2 border-gray-300 rounded-md text-sm item-satuan">
-                                        <option value="0">-- Pilih Barang --</option>
-                                        <option value="25000">Bedcover Besar</option>
-                                        <option value="15000">Jas</option>
-                                    </select>
-                                </td>
-                                <td><input type="number" value="0" class="w-16 p-2 border border-gray-200 rounded qty-satuan"></td>
-                                <td><button class="text-red-500" onclick="this.parentElement.parentElement.remove()"><i class="fas fa-times"></i></button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-gray-700 flex items-center">
+                                <i class="fas fa-tags mr-2 text-gray-400"></i> Layanan Satuan
+                            </h4>
+                            <button onclick="tambahBarisSatuan()" class="text-sm text-blue-600 font-bold hover:text-blue-800 transition-all">
+                                <i class="fas fa-plus mr-1"></i> Tambah Item
+                            </button>
+                        </div>
+                        
+                        <div class="overflow-hidden border border-gray-100 rounded-xl">
+                            <table class="w-full">
+                                <thead class="bg-gray-50 border-b border-gray-100">
+                                    <tr class="text-left text-[10px] uppercase tracking-widest text-gray-500">
+                                        <th class="px-4 py-3 font-black">Jenis Barang</th>
+                                        <th class="px-4 py-3 font-black w-24">Jumlah</th>
+                                        <th class="px-4 py-3 font-black text-center w-16">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="satuan-body" class="divide-y divide-gray-50">
+                                    <tr class="group">
+                                        <td class="p-3">
+                                            <select class="w-full p-2.5 bg-gray-50 border-none rounded-lg text-sm item-satuan focus:ring-2 focus:ring-blue-500 outline-none">
+                                                <option value="0">-- Pilih Barang --</option>
+                                                <option value="25000">Bedcover Besar (Rp 25.000)</option>
+                                                <option value="15000">Jas (Rp 15.000)</option>
+                                            </select>
+                                        </td>
+                                        <td class="p-3">
+                                            <input type="number" value="0" min="0" class="w-full p-2.5 bg-gray-50 border-none rounded-lg text-center font-bold text-blue-700 qty-satuan focus:ring-2 focus:ring-blue-500 outline-none">
+                                        </td>
+                                        <td class="p-3 text-center">
+                                            <button onclick="hapusBaris(this)" class="text-gray-300 hover:text-red-500 transition-colors p-2">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     
-                    <div class="mt-8 pt-4 border-t flex justify-end">
-                        <button onclick="hitungTotal()" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-bold transition shadow-lg">
-                            <i class="fas fa-calculator mr-2"></i> HITUNG TOTAL
+                    <div class="mt-10 pt-6 border-t border-gray-100 flex justify-end">
+                        <button onclick="hitungTotal()" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-2xl font-black shadow-lg shadow-orange-100 transition-all transform active:scale-95 flex items-center">
+                            <i class="fas fa-calculator mr-3 text-xl"></i> HITUNG TOTAL TAGIHAN
                         </button>
                     </div>
                 </div>
             </div>
 
             <div id="summary-section" class="hidden-summary">
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-600 sticky top-8">
-                    <h3 class="text-lg font-bold mb-4 uppercase text-gray-700">Ringkasan Biaya</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">Subtotal Kiloan</span>
-                            <span id="res-kiloan" class="font-medium text-gray-800">Rp 0</span>
+                <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-blue-600 sticky top-10">
+                    <h3 class="text-xl font-black mb-8 uppercase tracking-tighter text-gray-800 border-b pb-4">Invoice Summary</h3>
+                    
+                    <div class="space-y-5 text-sm">
+                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-xl">
+                            <span class="text-gray-500 font-medium">Subtotal Kiloan</span>
+                            <span id="res-kiloan" class="font-bold text-gray-800">Rp 0</span>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">Subtotal Satuan</span>
-                            <span id="res-satuan" class="font-medium text-gray-800">Rp 0</span>
+                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-xl">
+                            <span class="text-gray-500 font-medium">Subtotal Satuan</span>
+                            <span id="res-satuan" class="font-bold text-gray-800">Rp 0</span>
                         </div>
-                        <hr>
-                        <div class="flex justify-between items-center py-2">
-                            <span class="text-lg font-bold text-gray-900">Total Biaya</span>
-                            <span id="res-total" class="text-2xl font-black text-blue-700">Rp 0</span>
+                        
+                        <div class="pt-4 border-t-2 border-dashed border-gray-100 flex justify-between items-center px-2">
+                            <span class="text-lg font-bold text-gray-400">GRAND TOTAL</span>
+                            <span id="res-total" class="text-3xl font-black text-blue-700 tracking-tighter">Rp 0</span>
                         </div>
                     </div>
                     
-                    <div class="mt-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Catatan</label>
-                        <textarea class="w-full p-2 border border-gray-300 rounded-md h-20 text-sm" placeholder="Catatan tambahan..."></textarea>
-                        <button class="w-full mt-4 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">
-                            SIMPAN TRANSAKSI
+                    <div class="mt-10 space-y-4">
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-gray-400 uppercase tracking-widest px-1">Catatan Pesanan</label>
+                            <textarea class="w-full p-4 bg-gray-50 border-none rounded-2xl h-24 text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Contoh: Jangan campur baju luntur..."></textarea>
+                        </div>
+                        <button class="w-full bg-blue-600 text-white py-5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all flex items-center justify-center space-x-3">
+                            <i class="fas fa-save"></i>
+                            <span>SIMPAN KE DATABASE</span>
                         </button>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
     <script>
+        function tambahBarisSatuan() {
+            const tbody = document.getElementById('satuan-body');
+            const row = `
+                <tr class="group">
+                    <td class="p-3">
+                        <select class="w-full p-2.5 bg-gray-50 border-none rounded-lg text-sm item-satuan focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="0">-- Pilih Barang --</option>
+                            <option value="25000">Bedcover Besar (Rp 25.000)</option>
+                            <option value="15000">Jas (Rp 15.000)</option>
+                        </select>
+                    </td>
+                    <td class="p-3">
+                        <input type="number" value="0" min="0" class="w-full p-2.5 bg-gray-50 border-none rounded-lg text-center font-bold text-blue-700 qty-satuan focus:ring-2 focus:ring-blue-500 outline-none">
+                    </td>
+                    <td class="p-3 text-center">
+                        <button onclick="hapusBaris(this)" class="text-gray-300 hover:text-red-500 transition-colors p-2">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>`;
+            tbody.insertAdjacentHTML('beforeend', row);
+        }
+
+        function hapusBaris(btn) {
+            btn.closest('tr').remove();
+        }
+
         function hitungTotal() {
-            // Logika hitung kiloan
             const hargaKiloan = parseFloat(document.getElementById('paket_kiloan').value) || 0;
             const berat = parseFloat(document.getElementById('berat').value) || 0;
             const subKiloan = hargaKiloan * berat;
 
-            // Logika hitung satuan
             let subSatuan = 0;
             const items = document.querySelectorAll('.item-satuan');
             const qtys = document.querySelectorAll('.qty-satuan');
@@ -170,16 +244,13 @@
 
             const total = subKiloan + subSatuan;
 
-            // Update Tampilan
-            document.getElementById('res-kiloan').innerText = "Rp " + subKiloan.toLocaleString();
-            document.getElementById('res-satuan').innerText = "Rp " + subSatuan.toLocaleString();
-            document.getElementById('res-total').innerText = "Rp " + total.toLocaleString();
+            document.getElementById('res-kiloan').innerText = "Rp " + subKiloan.toLocaleString('id-ID');
+            document.getElementById('res-satuan').innerText = "Rp " + subSatuan.toLocaleString('id-ID');
+            document.getElementById('res-total').innerText = "Rp " + total.toLocaleString('id-ID');
 
-            // Munculkan Section Ringkasan
-            document.getElementById('summary-section').classList.remove('hidden-summary');
-            
-            // Scroll ke arah ringkasan jika di mobile
-            document.getElementById('summary-section').scrollIntoView({ behavior: 'smooth' });
+            const summary = document.getElementById('summary-section');
+            summary.classList.remove('hidden-summary');
+            summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
 </body>

@@ -7,6 +7,11 @@ use Filament\Auth\Http\Responses\LogoutResponse as ResponsesLogoutResponse;
 use Illuminate\Support\ServiceProvider;
 use App\Http\Responses\LoginResponse;
 use App\Http\Responses\LogoutResponse;
+use App\Models\Pesanan;
+use App\Observers\PesananObserver;
+use App\Models\PesananSatuan;
+use App\Models\PesananLayanan;
+use App\Observers\PesananDetailObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Pesanan::observe(PesananObserver::class);
+        // PesananSatuan::observe(PesananDetailObserver::class);
+        // PesananLayanan::observe(PesananDetailObserver::class);
     }
 }
