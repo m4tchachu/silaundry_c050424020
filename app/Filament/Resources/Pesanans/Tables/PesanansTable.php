@@ -46,7 +46,16 @@ class PesanansTable
                     ->searchable(),
                 TextColumn::make('STATUS')
                     ->label('Status')
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->colors([
+                        'success' => 'Selesai',
+                        'info' => 'Diambil',
+                        'warning' => 'Proses',
+                        'info' => 'Pending',
+                        'danger' => 'Batal',
+                    ])
+                    ->formatStateUsing(fn ($state) => ucfirst(strtolower($state))),
                 // TextColumn::make('TOTAL_BIAYA')
                 //     ->label('Total')
                 //     ->searchable(),

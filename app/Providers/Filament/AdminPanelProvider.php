@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\LatestPesanans;
 use App\Filament\Widgets\StatsOverviewWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -27,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->id('admin')
             ->path('admin')
-            ->brandName('SILaundry')
+            ->brandName('SIMAULaundry')
             ->profile()
             ->login()
             ->colors([
@@ -43,6 +44,7 @@ class AdminPanelProvider extends PanelProvider
                 AccountWidget::class,
                 FilamentInfoWidget::class,
                 StatsOverviewWidget::class,
+                LatestPesanans::class,
             ])
             ->middleware([
                 EncryptCookies::class,
