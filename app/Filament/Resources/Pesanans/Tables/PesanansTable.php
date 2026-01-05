@@ -47,9 +47,9 @@ class PesanansTable
                 TextColumn::make('STATUS')
                     ->label('Status')
                     ->searchable(),
-                TextColumn::make('TOTAL_BIAYA')
-                    ->label('Total')
-                    ->searchable(),
+                // TextColumn::make('TOTAL_BIAYA')
+                //     ->label('Total')
+                //     ->searchable(),
                 TextColumn::make('CATATAN')
                     ->label('Catatan')
                     ->searchable(),
