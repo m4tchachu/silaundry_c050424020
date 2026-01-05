@@ -21,14 +21,11 @@ class PesanansTable
                 TextColumn::make('pelanggan.NAMA_PELANGGAN')
                     ->label('Pelanggan')
                     ->searchable(),
-                TextColumn::make('admin.NAMA_ADMIN')
+                TextColumn::make('admin.USERNAME')
                     ->label('Admin')
                     ->searchable(),
                 TextColumn::make('kurir.NAMA_KURIR')
                     ->label('Kurir')
-                    ->searchable(),
-                TextColumn::make('jenisKiloan.PAKET_KILOAN')
-                    ->label('Kiloan')
                     ->searchable(),
                 TextColumn::make('TANGGAL_MASUK')
                     ->label('Tanggal Masuk')

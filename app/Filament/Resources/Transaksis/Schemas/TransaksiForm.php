@@ -26,9 +26,9 @@ class TransaksiForm
             Forms\Components\Select::make('STATUS')
                 ->label('Status')
                 ->options([
-                    'pending' => 'Pending',
-                    'lunas' => 'Lunas',
-                    'batal' => 'Batal',
+                    'Pending' => 'Pending',
+                    'Lunas' => 'Lunas',
+                    'Batal' => 'Batal',
                 ])
                 ->required(),
         ];

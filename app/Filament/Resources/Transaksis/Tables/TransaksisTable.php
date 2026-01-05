@@ -21,7 +21,13 @@ class TransaksisTable
                     ->searchable(),
                 TextColumn::make('STATUS')
                     ->label('Status')
-                    ->searchable(),
+                    ->badge()
+                    ->colors([
+                        'success' => 'Lunas',
+                        'info' => 'Pending',
+                        'danger' => 'Batal',
+                    ])
+                    ->formatStateUsing(fn ($state) => ucfirst(strtolower($state))),
                 TextColumn::make('created_at')
                     ->label('Dibuat'),
             ])
